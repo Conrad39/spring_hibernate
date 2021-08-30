@@ -6,6 +6,7 @@ import hiber.model.User;
 import hiber.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import javax.persistence.NoResultException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -30,7 +31,13 @@ public class MainApp {
          System.out.println("Car = " + user.getCar());
          System.out.println();
       }
-      System.out.println("User by car model & series:" + userService.getUserByModelAndSeries("Opel", 11122233));
+      User user = userService.getUserByModelAndSeries("Opel", 11122233);
+      System.out.println("Id = "+user.getId());
+      System.out.println("First Name = "+user.getFirstName());
+      System.out.println("Last Name = "+user.getLastName());
+      System.out.println("Email = "+user.getEmail());
+      System.out.println("Car = ["+user.getCar()+"]");
+      System.out.println();
 
       context.close();
    }

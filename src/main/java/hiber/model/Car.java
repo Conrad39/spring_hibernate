@@ -3,25 +3,21 @@ package hiber.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "cars")
 public class Car {
 
-    @Column
     private String model;
+    private int series;
 
     @Id
-    @Column
-    private int series;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     public Car(){
 
     }
 
-    @Override
-    public String toString() {
-        return "(Car model: " + model +
-                ", Car series: " + series +
-                ")";
-    }
+
 
     public Car (String model, int series){
         this.model = model;
@@ -42,5 +38,9 @@ public class Car {
 
     public void setSeries(int series) {
         this.series = series;
+    }
+    @Override
+    public String toString() {
+        return String.format("ID = %d; Model = %s, Series = %s", id, model, series);
     }
 }
